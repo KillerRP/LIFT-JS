@@ -238,7 +238,8 @@ let liftTransaction = (pickupFloor, dropFloor) => {
 //   liftTransaction(pickupFloor, dropFloor);
 // };
 
-liftTransaction(1, 5);
-liftTransaction(4, 10);
-liftTransaction(8, 3);
+liftTransaction(0, 5);
+liftTransaction(-1, -2);
+liftTransaction(1, 7);
+// liftTransaction(8, 3);
 // 1, 4, 8, 13, 10, 5, 1, -2, 8
