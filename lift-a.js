@@ -28,11 +28,11 @@ function lift(pickupFloor, dropFloor) {
       }
     }
     liftFloor++;
-    // if (liftFloor > 15) {
-    //   console.log("last floor");
-    // } else {
-    //   console.log("next floor:", liftFloor);
-    // }
+    if (liftFloor > 15) {
+      console.log("last floor");
+    } else {
+      console.log("next floor:", liftFloor);
+    }
   } else if (dropFloor < pickupFloor && liftFloor >= dropFloor) {
     console.log("going down current floor:", liftFloor);
     for (let i = 0; i < newCall.length; i++) {
@@ -155,7 +155,7 @@ function callLiftDown(pickupFloor, dropFloor) {
     }
   } else {
     liftFloor = pickupFloor;
-    // console.log("lift is on ", liftFloor, "floor ");
+    console.log("lift is on ", liftFloor, "floor ");
     clearInterval(liftcall);
     console.log("door open");
     liftcall = setInterval(() => {
@@ -165,7 +165,7 @@ function callLiftDown(pickupFloor, dropFloor) {
 }
 
 function startLift() {
-  // let temp = [];
+  let temp = [];
   //checks the lift calls
   if (newCall.length === 0) {
     console.log("end");
@@ -223,58 +223,73 @@ function startLift() {
   }
 }
 
-// btn.onclick = () => {
-//   let pickupFloor = parseInt(sfloorNumber.value);
-//   let dropFloor = parseInt(efloorNumber.value);
-//   console.log("lift in onclick", newCall);
-//   //adding new calls
-//   if (
-//     pickupFloor < -1 ||
-//     pickupFloor > 15 ||
-//     dropFloor < -1 ||
-//     dropFloor > 15
-//   ) {
-//     console.log("invalid");
-//   } else {
-//     if (newCall.length === 0) {
-//       newCall.push({
-//         pickupCall: pickupFloor,
-//         dropCall: dropFloor,
-//         inLift: false,
-//       });
-//       console.log(newCall);
+const liftMy = (s,e) => {
+  let pickupFloor = parseInt(s);
+  let dropFloor = parseInt(e);
+  console.log("lift in onclick", newCall);
+  //adding new calls
+  if (
+    pickupFloor < -1 ||
+    pickupFloor > 15 ||
+    dropFloor < -1 ||
+    dropFloor > 15
+  ) {
+    console.log("invalid");
+  } else {
+    if (newCall.length === 0) {
+      newCall.push({
+        pickupCall: pickupFloor,
+        dropCall: dropFloor,
+        inLift: false,
+      });
+      console.log(newCall);
 
-//       startLift();
-//     } else {
-//       newCall.push({
-//         pickupCall: pickupFloor,
-//         dropCall: dropFloor,
-//         inLift: false,
-//       });
-//     }
-//   }
-// };
+      startLift();
+    } else {
+      newCall.push({
+        pickupCall: pickupFloor,
+        dropCall: dropFloor,
+        inLift: false,
+      });
+    }
+  }
+};
 
-newCall.push({
-  pickupCall: 6,
-  dropCall: 8,
-  inLift: false,
-});
-newCall.push({
-  pickupCall: 7,
-  dropCall: -2,
-  inLift: false,
-});
-newCall.push({
-  pickupCall: 8,
-  dropCall: 13,
-  inLift: false,
-});
-newCall.push({
-  pickupCall: 7,
-  dropCall: 10,
-  inLift: false,
-});
+
+liftMy(0,5)
+liftMy(5,8)
+liftMy(4,8)
+liftMy(3,5)
+liftMy(2,8)
+liftMy(1,10)
+liftMy(9,15)
+liftMy(5,7)
+// newCall(-2,7)
+// newCall()
+
+
+
+
+// newCall.push({
+//   pickupCall: 6,
+//   dropCall: 8,
+//   inLift: false,
+// });
+// newCall.push({
+//   pickupCall: 7,
+//   dropCall: -2,
+//   inLift: false,
+// });
+// newCall.push({
+//   pickupCall: 8,
+//   dropCall: 13,
+//   inLift: false,
+// });
+// newCall.push({
+//   pickupCall: 7,
+//   dropCall: 10,
+//   inLift: false,
+// });
 // 
 // newCall.push({
 //   pickupCall: 0,

@@ -1,15 +1,12 @@
-// const liftcallbtn = document.getElementById("liftcallbtn");
-// const startfloor = document.getElementById("startfloor");
-// const endfloor = document.getElementById("endfloor");
 let callQueue = [];
 let liftcall;
 var liftFloor = 0; // lift's current floor
-// console.log('current floor : ', liftFloor);
 
 //================================================================================
 
 let cnt = 0;
 function up(pickupFloor, dropFloor) {
+  // console.log(callQueue);
 
   for (let i = 0; i < callQueue.length; i++) {
     if (callQueue[i].direction > 0) {
@@ -150,10 +147,12 @@ function down(pickupFloor, dropFloor) {
 //================================================================================
 
 function callLift() {
+  console.log(callQueue);
   let pickupFloor = callQueue[0].pickup;
   let dropFloor = callQueue[0].drop;
   let direction = pickupFloor - dropFloor; //minus to up - 
   let liftDirection = liftFloor - pickupFloor;
+  console.log("Pick :", pickupFloor, "END : ", dropFloor);
   if (liftDirection < 0) {
     for (let i = 0; i < callQueue.length; i++) {
       if (direction > 0 && callQueue[i].direction > 0) {
@@ -170,6 +169,8 @@ function callLift() {
       }
     }
   }
+  console.log("Pick :", pickupFloor, "END : ", dropFloor);
+  // console.log(pickupFloor, dropFloor);
 
   if (liftFloor < pickupFloor) {    //up
     liftcall = setInterval(() => {
@@ -177,13 +178,11 @@ function callLift() {
     }, 2000);
   }
   else if (liftFloor > pickupFloor) {
-    // console.log("lift is up, coming down");
     liftcall = setInterval(() => {
       down(pickupFloor, dropFloor);
     }, 2000);
   }
   else {
-    // console.log("lift is at the same floor");
     if (direction > 0) {
       liftcall = setInterval(() => {
         down(pickupFloor, dropFloor);
@@ -199,9 +198,8 @@ function callLift() {
 
 //================================================================================
 
-let liftTransaction = (pickupFloor, dropFloor) => {
+let LiftTransaction = (pickupFloor, dropFloor) => {
   let direction = pickupFloor - dropFloor; //
-  // direction = (pickupFloor - dropFloor) ? 'down' : 'up';
 
   if (isNaN(pickupFloor) || isNaN(dropFloor)) {
     console.log("Please enter number value");
@@ -229,17 +227,20 @@ let liftTransaction = (pickupFloor, dropFloor) => {
       direction: direction,
     });
   }
-  // console.log(callQueue);
 };
 
-// liftcallbtn.onclick = () => {
-//   let pickupFloor = parseInt(startfloor.value);
-//   let dropFloor = parseInt(endfloor.value);
-//   liftTransaction(pickupFloor, dropFloor);
-// };
+LiftTransaction(8, -2)
+// LiftTransaction(0, -1)
+// LiftTransaction(0, 10)
+// LiftTransaction(2, 15)
+// LiftTransaction(-2, 5)
+// LiftTransaction(5, 3)
+// LiftTransaction(13, 6)
+// LiftTransaction(1, 10)
+// LiftTransaction(10, 2)
+// LiftTransaction(-2, 4)
+// LiftTransaction(8, -2)
+// LiftTransaction(9, 15)
+// LiftTransaction(7, 5)
+// LiftTransaction(-2, -1)
 
-liftTransaction(0, 5);
-liftTransaction(-1, -2);
-liftTransaction(1, 7);
-// liftTransaction(8, 3);
-// 1, 4, 8, 13, 10, 5, 1, -2, 8
